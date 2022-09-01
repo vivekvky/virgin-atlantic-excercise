@@ -1,0 +1,54 @@
+.input-control,
+.select_control {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.input-control:focus-visible,
+.select_control:focus-visible{
+outline-color:#e13255;
+}
+
+.submit-button {
+  width: 50%;
+  background-color: #da0530;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  
+}
+
+.submit-button:hover {
+  background-color: #e13255;
+}
+
+.form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+label {
+  display: block;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  margin: 5px;
+  justify-content: flex-end;
+}
