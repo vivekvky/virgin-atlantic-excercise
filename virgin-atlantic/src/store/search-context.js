@@ -18,10 +18,7 @@ export const SearchContextProvider = (props) => {
     const [isLoding, setIsLoding] = useState(false);
     const [data, setSearchData] = useState([]);
     const searchHandler = (postData) => {
-        // console.log(postData)
         setIsLoding(true);
-
-        console.log(postData)
         axios.post('/cjs-search-api/search', postData, headers)
             .then((response) => {
                 console.log(response)
@@ -30,6 +27,7 @@ export const SearchContextProvider = (props) => {
             })
             .catch((err) => {
                 console.log(err)
+                setIsLoding(false);
             })
     };
 

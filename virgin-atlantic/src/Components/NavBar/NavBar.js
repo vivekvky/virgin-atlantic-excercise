@@ -1,7 +1,7 @@
 import "./NavBar.css";
 
 import {
-    useHistory,Link
+    useHistory
 } from "react-router-dom";
 
 

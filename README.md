@@ -6,7 +6,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run the project and see the details for the search results.\
+
+Added proxy in the package.json to fix cross orgin error.\
+
+Added external library `loadash.debouce` for wait time of keystroke of price field such that performance increses.\
 
 ### `npm start`
 

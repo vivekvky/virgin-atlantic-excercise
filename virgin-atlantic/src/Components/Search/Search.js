@@ -8,15 +8,15 @@ export default function Search() {
     const ctx = useContext(SearchContext)
     const minDate = new Date().toISOString().slice(0, 10);
     const defaultData = {
-      "bookingType": "hotel",
-      "location": "orlando",
-      "departureDate": "24-09-2022",
-      "duration": "7",
-      "partyCompositions": [{
-        "adults": 2,
-        "childAges": [],
-        "infants": 0
-      }]
+        "bookingType": "hotel",
+        "location": "orlando",
+        "departureDate": "24-09-2022",
+        "duration": "7",
+        "partyCompositions": [{
+            "adults": 2,
+            "childAges": [],
+            "infants": 0
+        }]
     }
 
     const onLocationChange = (event) => {

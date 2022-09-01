@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Contact() {
   return (
-    <div>Contact</div>
+    <div>Contact Virgin Atlantic</div>
   )
 }
