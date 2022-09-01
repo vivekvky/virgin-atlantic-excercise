@@ -20,11 +20,13 @@ export default function Home() {
 
   const { isLoding, searchData } = ctx;
 
+/* we are filtering the facility list which are only in the data */
   useEffect(() => {
     setList(searchData)
     setfacilitiesList([...new Set(searchData.map(e => e.hotel.content.hotelFacilities).flat())])
   }, [searchData])
 
+  /* filter by start rating */
   const starHandler = (e) => {
     let data = {
       ...filterCriteria,
@@ -36,8 +38,8 @@ export default function Home() {
     filterSearch(data)
   }
 
+  /* filter by facility  */
   const facilityHandler = (e) => {
-
     const selectedValues = Array.from(e.target.selectedOptions, option => option.value);
     let data = {
       ...filterCriteria,
@@ -49,6 +51,7 @@ export default function Home() {
     filterSearch(data)
   }
 
+  /* filter by price */
   const priceHandler = debounce((e) => {
     console.log(e.target.value)
     let data = {
@@ -61,17 +64,18 @@ export default function Home() {
     filterSearch(data)
   }, 200);
 
+  /* main filter logic for any changes in filter */
   const filterSearch = (data) => {
-    const filteredList1 = +data.price > 0 ? searchData.filter(li => {
+    const filteredByPrice = +data.price > 0 ? searchData.filter(li => {
       return li.pricePerPerson && +li.pricePerPerson >= +data.price
     }) : searchData;
-    const filteredList2 = data.facility.length > 0 ? filteredList1.filter(li => {
+    const filteredByFacility = data.facility.length > 0 ? filteredByPrice.filter(li => {
       return li.hotel.content.hotelFacilities && li.hotel.content.hotelFacilities.find((t) => data.facility.some((s) => s === t))
-    }) : filteredList1;
-    const filteredList3 = filteredList2.filter(li => {
+    }) : filteredByPrice;
+    const filteredByStarRating = filteredByFacility.filter(li => {
       return li.hotel.content.starRating && +li.hotel.content.starRating >= data.star
     })
-    setList(filteredList3);
+    setList(filteredByStarRating);
   }
 
 
