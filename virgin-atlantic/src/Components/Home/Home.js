@@ -93,6 +93,7 @@ export default function Home() {
           <div className='main-container'>
             {searchData.length > 0 && <div className='filter-container'>
               <div>
+                <hr/>
               <h5 className='filter-label'>Filter by Price</h5>
               <input
                 name="name"
@@ -103,6 +104,7 @@ export default function Home() {
                 onChange={priceHandler}
               />
               </div>
+              <hr/>
               <div>
                 <h5 className='filter-label'> Filter by Star</h5>
                 <div className='radio-but'>
@@ -111,6 +113,7 @@ export default function Home() {
                   })}
                 </div>
               </div>
+              <hr/>
               <div>
                 <h5 className='filter-label'> Filter by Facility</h5>
                 <Form className='filter-label'>
