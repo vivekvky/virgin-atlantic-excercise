@@ -12,9 +12,10 @@ Created the project using function components and react hooks.
 
 Added `proxy` in the package.json to fix cross orgin error.
 
-Added external library `loadash.debouce` for wait time of keystroke of price field such that performance improves.
+Added external library `loadash.debouce, react-bootstrap, bootstrap icons` 
 
 Used `contextapi` for the state management.
+
 
 ### `npm start`
 
