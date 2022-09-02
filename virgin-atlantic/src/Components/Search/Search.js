@@ -43,7 +43,7 @@ export default function Search() {
             <div className="content">
                 <div className='flex-container'>
                     <label >Country</label>
-                    <select id="country" className='input-control' name="country" value={searchValue.location} onChange={onLocationChange}>
+                    <select data-testid="country" className='input-control' name="country" value={searchValue.location} onChange={onLocationChange}>
                         {['new-york', 'orlando', 'barbados', 'toronto'].map(city =>
                             (<option key={city} value={city}>{city}</option>)
                         )}
@@ -51,7 +51,7 @@ export default function Search() {
                 </div>
                 <div className='flex-container'>
                     <label>Date</label>
-                    <input type="date" id="start" className='input-control' name="trip-start" onChange={onDateChange} value={searchValue.date} min={minDate} max="2025-12-31" />
+                    <input data-testid="start"  type="date" className='input-control' name="trip-start" onChange={onDateChange} value={searchValue.date} min={minDate} max="2025-12-31" />
                 </div >
 
                 <div className='flex-container'>

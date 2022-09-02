@@ -4,7 +4,9 @@ import SearchContext from '../../store/search-context'
 import LoadingSpinner from '../Loadingspinner/Loadingspinner'
 import Search from '../Search/Search'
 import './Home.css'
-import Table from '../Table/Table';
+import CustomCard from '../CustomCard/CustomCard';
+import StarComponent from '../StarComponent/StarComponent';
+import Form from 'react-bootstrap/Form';
 
 export default function Home() {
   const [list, setList] = useState([])
@@ -12,7 +14,7 @@ export default function Home() {
   const [filterCriteria, setFilterCriteria] = useState({
     price: '',
     facility: [],
-    star: '1'
+    star: '0'
   })
 
 
@@ -20,27 +22,32 @@ export default function Home() {
 
   const { isLoding, searchData } = ctx;
 
-/* we are filtering the facility list which are only in the data */
+  /* we are filtering the facility list which are only in the data */
   useEffect(() => {
     setList(searchData)
     setfacilitiesList([...new Set(searchData.map(e => e.hotel.content.hotelFacilities).flat())])
   }, [searchData])
 
   /* filter by start rating */
-  const starHandler = (e) => {
+  const starHandler = (value) => {
     let data = {
       ...filterCriteria,
-      star: e.target.value
+      star: value
     }
     setFilterCriteria(prev => {
-      return { ...prev, star: e.target.value }
+      return { ...prev, star: value }
     })
     filterSearch(data)
   }
 
   /* filter by facility  */
   const facilityHandler = (e) => {
-    const selectedValues = Array.from(e.target.selectedOptions, option => option.value);
+    let selectedValues = structuredClone(filterCriteria.facility);
+    if(selectedValues.includes(e.target.value)){
+      selectedValues = selectedValues.filter(item => item !== e.target.value);
+    }else{
+      selectedValues.push(e.target.value);
+    }
     let data = {
       ...filterCriteria,
       facility: selectedValues
@@ -78,45 +85,57 @@ export default function Home() {
     setList(filteredByStarRating);
   }
 
-
   return (
     <>
       <Search />
       {!isLoding &&
         <div>
-          {searchData.length > 0 && <div className="content fit-box">
-            <div className='flex-container'>
-              <label>Filter by Price</label>
+          <div className='main-container'>
+            {searchData.length > 0 && <div className='filter-container'>
+              <div>
+              <h5 className='filter-label'>Filter by Price</h5>
               <input
                 name="name"
-                className='input-control'
+                className='input-control marg'
                 type="text"
                 autoComplete='off'
-                placeholder="Type Name"
+                placeholder="Type Price"
                 onChange={priceHandler}
               />
+              </div>
+              <div>
+                <h5 className='filter-label'> Filter by Star</h5>
+                <div className='radio-but'>
+                  {[5, 4, 3, 2, 1].map((r) => {
+                    return <div onClick={() => starHandler(r)}  key={r} ><StarComponent  value={r} /></div>
+                  })}
+                </div>
+              </div>
+              <div>
+                <h5 className='filter-label'> Filter by Facility</h5>
+                <Form className='filter-label'>
+                  {facilitiesList.map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                      <Form.Check
+                        inline
+                        label={type}
+                        name="group1"
+                        value={type}
+                        type="checkbox"
+                        id={`inline-${type}-1`}
+                        onChange={facilityHandler}
+                      />
+                    </div>
+                  ))}
+                </Form>
+              </div>
+            </div>}
+            <div className="flex-container-card">
+              {list.map(li => {
+                return (<CustomCard item={li} key={li.hotel.id} />)
+              })}
             </div>
-            <div className='flex-container'>
-              <label>Filter by Facility</label>
-              <select id="country" className='input-control multiselect' multiple name="country" onChange={facilityHandler}
-              >
-                {facilitiesList.map(facility => {
-                  return (
-                    <option key={facility} value={facility}>{facility}</option>
-                  )
-                })}
-              </select>
-            </div >
-            <div className='flex-container'>
-              <label>Filter by Star</label>
-              <select id="country" className='input-control' name="country" onChange={starHandler}>
-                {[1, 2, 3, 4, 5].map(star => {
-                  return (<option key={star} value={star}>{star}{' Star & Above'}</option>)
-                })}
-              </select>
-            </div >
-          </div>}
-          <Table list={list} />
+          </div>
         </div>
       }
       {isLoding && <LoadingSpinner />}

@@ -1,9 +1,50 @@
-.multiselect{
-  height: 40px;
-}
-.no-data{
+.no-data {
   width: 80%;
 }
-.fit-box{
+
+.fit-box {
   width: 50%;
+}
+
+.flex-container-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: space-around;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 10px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.radio-but {
+  display: flex;
+  flex-direction: row;
+  width: 15rem;
+  margin: 10px;
+  text-align: center;
+  align-items: baseline;
+}
+
+.filter-container {
+  width: 20rem;
+}
+
+.filter-label {
+  text-align: left;
+  margin: 10px;
+}
+
+.marg {
+  margin: 5px;
 }

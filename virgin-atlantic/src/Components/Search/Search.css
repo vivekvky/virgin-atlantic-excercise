@@ -10,12 +10,12 @@
 }
 .input-control:focus-visible,
 .select_control:focus-visible{
-outline-color:#e13255;
+outline-color:#067b93;
 }
 
 .submit-button {
   width: 50%;
-  background-color: #da0530;
+  background-color: #067b93;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -26,7 +26,7 @@ outline-color:#e13255;
 }
 
 .submit-button:hover {
-  background-color: #e13255;
+  background-color: #149db8;
 }
 
 .form {
