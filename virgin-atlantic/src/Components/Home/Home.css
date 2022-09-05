@@ -29,7 +29,7 @@
 
 .radio-but {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 15rem;
   margin: 10px;
   text-align: center;
@@ -47,4 +47,7 @@
 
 .marg {
   margin: 5px;
+}
+.star{
+  display: flex;
 }

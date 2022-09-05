@@ -21,7 +21,6 @@ export const SearchContextProvider = (props) => {
         setIsLoding(true);
         axios.post('/cjs-search-api/search', postData, headers)
             .then((response) => {
-                console.log(response)
                 setSearchData(response.data.holidays);
                 setIsLoding(false);
             })

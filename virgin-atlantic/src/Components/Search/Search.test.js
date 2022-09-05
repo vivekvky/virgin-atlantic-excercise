@@ -9,7 +9,7 @@ test('renders Search', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('renders search', () => {
+test('renders submit', () => {
   render(<Search/>);
   const linkElement =screen.getByText(/Submit/i);
   expect(linkElement).toBeInTheDocument();

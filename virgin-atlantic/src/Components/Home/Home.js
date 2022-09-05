@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useCallback } from 'react'
 import debounce from "lodash.debounce";
 import SearchContext from '../../store/search-context'
 import LoadingSpinner from '../Loadingspinner/Loadingspinner'
@@ -30,14 +30,9 @@ export default function Home() {
 
   /* filter by start rating */
   const starHandler = (value) => {
-    let data = {
-      ...filterCriteria,
-      star: value
-    }
     setFilterCriteria(prev => {
       return { ...prev, star: value }
     })
-    filterSearch(data)
   }
 
   /* filter by facility  */
@@ -48,32 +43,21 @@ export default function Home() {
     }else{
       selectedValues.push(e.target.value);
     }
-    let data = {
-      ...filterCriteria,
-      facility: selectedValues
-    }
     setFilterCriteria(prev => {
       return { ...prev, facility: selectedValues }
     })
-    filterSearch(data)
   }
 
   /* filter by price */
   const priceHandler = debounce((e) => {
-    console.log(e.target.value)
-    let data = {
-      ...filterCriteria,
-      price: e.target.value
-    }
     setFilterCriteria(prev => {
       return { ...prev, price: e.target.value }
     })
-    filterSearch(data)
   }, 200);
 
   /* main filter logic for any changes in filter */
-  const filterSearch = (data) => {
-    const filteredByPrice = +data.price > 0 ? searchData.filter(li => {
+  const filterSearch = useCallback((data) => {
+    const filteredByPrice =  +data.price > 0 ? searchData.filter(li => {
       return li.pricePerPerson && +li.pricePerPerson >= +data.price
     }) : searchData;
     const filteredByFacility = data.facility.length > 0 ? filteredByPrice.filter(li => {
@@ -83,7 +67,11 @@ export default function Home() {
       return li.hotel.content.starRating && +li.hotel.content.starRating >= data.star
     })
     setList(filteredByStarRating);
-  }
+  },[searchData])
+
+  useEffect(() =>{
+    filterSearch(filterCriteria)
+   }, [filterSearch,filterCriteria ])
 
   return (
     <>
@@ -109,7 +97,7 @@ export default function Home() {
                 <h5 className='filter-label'> Filter by Star</h5>
                 <div className='radio-but'>
                   {[5, 4, 3, 2, 1].map((r) => {
-                    return <div onClick={() => starHandler(r)}  key={r} ><StarComponent  value={r} /></div>
+                    return <div onClick={() => starHandler(r)} className="star" key={r} id={r}><StarComponent  value={r} /></div>
                   })}
                 </div>
               </div>
