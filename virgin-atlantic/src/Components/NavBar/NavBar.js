@@ -1,4 +1,4 @@
-import "./NavBar.css";
+import classes from  "./NavBar.module.css";
 
 import {
     useHistory
@@ -8,12 +8,13 @@ import {
 const NavBar = () => {
     const history = useHistory()
     return (<>
-        <header className="navbar">
-            <div className="navbar__title navbar__item" onClick={()=>history.push('./home')} >
+        <header className={classes.navbar}>
+            <div className={`${classes['navbar__title']} ${classes['navbar__item']}`}
+            onClick={()=>history.push('./home')} >
             Virgin Atlantic
             </div>
-            <div className="navbar__item" onClick={()=>history.push('./about')}>About Us</div>
-            <div className="navbar__item" onClick={()=>history.push('./contact')}>Contact</div>
+            <div className={classes["navbar__item"]} onClick={()=>history.push('./about')}>About Us</div>
+            <div className={classes["navbar__item"]} onClick={()=>history.push('./contact')}>Contact</div>
         </header>
     </>)
 };

@@ -36,11 +36,11 @@
   },
   "jest": {
     "coveragePathIgnorePatterns": [
-        "<rootDir>/src/index.js",
-        "<rootDir>/src/reportWebVitals.js",
-        "<rootDir>/src/store"
+      "<rootDir>/src/index.js",
+      "<rootDir>/src/reportWebVitals.js",
+      "<rootDir>/src/store"
     ]
-},
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -52,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.54.8"
   }
 }

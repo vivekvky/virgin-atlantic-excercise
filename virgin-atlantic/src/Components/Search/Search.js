@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import SearchContext from '../../store/search-context';
-import './Search.css';
-
+import classes from './Search.module.css';
 
 export default function Search() {
     const [searchValue, setValue] = useState({ location: 'new-york', date: '' })
@@ -39,23 +38,22 @@ export default function Search() {
     }
 
     return (
-        <form className='form'>
-            <div className="content">
-                <div className='flex-container'>
+        <form className={classes['form']}>
+            <div className={classes["content"]}>
+                <div className={classes['flex-container']}>
                     <label >Country</label>
-                    <select data-testid="country" className='input-control' name="country" value={searchValue.location} onChange={onLocationChange}>
+                    <select data-testid="country" className="input-control" name="country" value={searchValue.location} onChange={onLocationChange}>
                         {['new-york', 'orlando', 'barbados', 'toronto'].map(city =>
                             (<option key={city} value={city}>{city}</option>)
                         )}
                     </select>
                 </div>
-                <div className='flex-container'>
+                <div className={classes['flex-container']}>
                     <label>Date</label>
-                    <input data-testid="start"  type="date" className='input-control' name="trip-start" onChange={onDateChange} value={searchValue.date} min={minDate} max="2025-12-31" />
+                    <input data-testid="start"  type="date" className="input-control"  name="trip-start" onChange={onDateChange} value={searchValue.date} min={minDate} max="2025-12-31" />
                 </div >
-
-                <div className='flex-container'>
-                    <button className='submit-button' type="submit" onClick={onSearch}>Submit</button>
+                <div className={classes['flex-container']}>
+                    <button className={classes['submit-button']} type="submit" onClick={onSearch}>Submit</button>
                 </div>
             </div>
         </form>

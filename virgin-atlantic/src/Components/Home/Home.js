@@ -3,7 +3,7 @@ import debounce from "lodash.debounce";
 import SearchContext from '../../store/search-context'
 import LoadingSpinner from '../Loadingspinner/Loadingspinner'
 import Search from '../Search/Search'
-import './Home.css'
+import classes from './Home.module.css'
 import CustomCard from '../CustomCard/CustomCard';
 import StarComponent from '../StarComponent/StarComponent';
 import Form from 'react-bootstrap/Form';
@@ -78,11 +78,11 @@ export default function Home() {
       <Search />
       {!isLoding &&
         <div>
-          <div className='main-container'>
-            {searchData.length > 0 && <div className='filter-container'>
+          <div className={classes['main-container']}>
+            {searchData.length > 0 && <div className={classes['filter-container']}>
               <div>
                 <hr/>
-              <h5 className='filter-label'>Filter by Price</h5>
+              <h5 className={classes['filter-label']}>Filter by Price</h5>
               <input
                 name="name"
                 className='input-control marg'
@@ -94,19 +94,19 @@ export default function Home() {
               </div>
               <hr/>
               <div>
-                <h5 className='filter-label'> Filter by Star</h5>
-                <div className='radio-but'>
+                <h5 className={classes['filter-label']}> Filter by Star</h5>
+                <div className={classes['radio-but']}>
                   {[5, 4, 3, 2, 1].map((r) => {
-                    return <div onClick={() => starHandler(r)} className="star" key={r} id={r}><StarComponent  value={r} /></div>
+                    return <div onClick={() => starHandler(r)} className={classes.star} key={r} id={r}><StarComponent  value={r} /></div>
                   })}
                 </div>
               </div>
               <hr/>
               <div>
-                <h5 className='filter-label'> Filter by Facility</h5>
-                <Form className='filter-label'>
+                <h5 className={classes['filter-label']}> Filter by Facility</h5>
+                <Form className={classes['filter-label']}>
                   {facilitiesList.map((type) => (
-                    <div key={`inline-${type}`} className="mb-3">
+                    <div key={`inline-${type}`} className={classes["mb-3"]}>
                       <Form.Check
                         inline
                         label={type}
@@ -121,7 +121,7 @@ export default function Home() {
                 </Form>
               </div>
             </div>}
-            <div className="flex-container-card">
+            <div className={classes["flex-container-card"]}>
               {list.map(li => {
                 return (<CustomCard item={li} key={li.hotel.id} />)
               })}

@@ -1,10 +1,11 @@
 import React from "react";
-import "./Loadingspinner.css";
+import classes from  "./Loadingspinner.module.css";
+
 
 export default function LoadingSpinner() {
   return (
-    <div className="spinner-container">
-      <div data-testid="spinner" className="loading-spinner"></div>
+    <div className={classes['spinner-container']}>
+      <div data-testid="spinner" className={classes['loading-spinner']}></div>
     </div>
   );
 }

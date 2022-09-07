@@ -28,6 +28,25 @@
   color: #61dafb;
 }
 
+
+.input-control,
+.select_control {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  &:focus-visible{
+    outline-color:#067b93;
+  }
+}
+
+.marg {
+  margin: 5px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +54,7 @@
   to {
     transform: rotate(360deg);
   }
+}
+main{
+  margin-top: 68px;
 }
